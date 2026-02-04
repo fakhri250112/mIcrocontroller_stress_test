@@ -1,5 +1,5 @@
 #define DIGITS 500
-#define REPEAT 300   // naikkan ini kalau masih kurang panas 😈
+#define REPEAT 300   // Edit this if you want higher/lower
 
 int a[DIGITS * 10 / 3 + 1];
 

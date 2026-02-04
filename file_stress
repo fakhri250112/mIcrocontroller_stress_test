@@ -1,0 +1,47 @@
+#define DIGITS 500
+#define REPEAT 300   // naikkan ini kalau masih kurang panas 😈
+
+int a[DIGITS * 10 / 3 + 1];
+
+void hitung_pi() {
+  int len = DIGITS * 10 / 3;
+
+  for (int i = 0; i <= len; i++) a[i] = 2;
+
+  int q, x;
+
+  for (int i = 0; i < DIGITS; i++) {
+    q = 0;
+    for (int j = len; j > 0; j--) {
+      x = 10 * a[j] + q;
+      a[j] = x % (2 * j + 1);
+      q = (x / (2 * j + 1)) * j;
+
+      q = (q * q + 12345) % 1000003;
+    }
+    a[0] = q % 10;
+  }
+}
+
+void setup() {
+  Serial.begin(9600);
+  while (!Serial);
+
+  Serial.println("START STRESS TEST");
+
+  unsigned long t0 = millis();
+
+  for (int i = 0; i < REPEAT; i++) {
+    hitung_pi();
+  }
+
+  unsigned long t1 = millis();
+
+  Serial.print("SELESAI. Waktu eksekusi: ");
+  Serial.print((t1 - t0) / 1000.0);
+  Serial.println(" detik");
+}
+
+void loop() {
+  
+}
